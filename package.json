@@ -4,13 +4,15 @@
   "description": "Step Sequencer",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf dist",
+    "servedev": "webpack-dev-server",
+    "build": "NODE_ENV=production npm run clean && webpack"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kirie/StepSequencer.git"
   },
-  "author": "",
+  "author": "kirie",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/kirie/StepSequencer/issues"
