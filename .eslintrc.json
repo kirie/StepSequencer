@@ -1,0 +1,14 @@
+{
+    "extends": "airbnb",
+    "installedESLint": true,
+    "plugins": [
+        "react",
+        "jsx-a11y",
+        "import"
+    ],
+    "rules": {
+      "brace-style": [2, "stroustrup", {"allowSingleLine": false}],
+      "comma-dangle": [2, "never"],
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    }
+}
