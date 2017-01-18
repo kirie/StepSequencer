@@ -60,6 +60,69 @@ class drumMachine extends Component {
     Tone.Transport.bpm.value = this.state.bpm;
     Tone.Master.volume.value = this.state.volume;
   }
+  
+  triggerSample(sampler) {
+    this[sampler].triggerAttackRelease(0);
+  }
+
+  clearPattern() {
+    this.setState({ currentPattern: nullTrack });
+  }
+
+  positionMarker() {
+    this.setState({ position: PositionTransform[Tone.Transport.position.slice(0, 5)] });
+  }
+
+  startStop() {
+    if (this.state.playing) {
+      Tone.Transport.stop();
+      this.setState({ playing: false });
+    }
+    else {
+      Tone.Transport.start('+0.25');
+      this.setState({ playing: true });
+    }
+  }
+
+  changeTempo(e) {
+    let newTempo = parseInt(e.currentTarget.value, 10);
+    if (isNaN(newTempo)) {
+      newTempo = 10;
+    }
+    if (newTempo > 200) {
+      newTempo = 200;
+    }
+    Tone.Transport.bpm.value = newTempo;
+    this.setState({ bpm: newTempo });
+  }
+
+  updatePattern(event) {
+    const channelNum = parseInt(event.currentTarget.dataset.channel, 10);
+    const stepNum = parseInt(event.currentTarget.dataset.stepindx, 10);
+    const temp = this.state.currentPattern;
+    if (temp[channelNum][stepNum]) {
+      temp[channelNum][stepNum] = null;
+      this[`channelPattern${channelNum}`].remove(stepNum);
+    }
+    else {
+      temp[channelNum][stepNum] = true;
+      this[`channelPattern${channelNum}`].add(stepNum, true);
+    }
+    this.setState({ currentPattern: temp });
+  }
+
+  abswitch() {
+    this.setState({ bside: !this.state.bside });
+  }
+
+  changeVolume(e, value) {
+    this.setState({volume: value });
+    if (value < -39) {
+      value = -10000;
+    }
+    Tone.Master.volume.value = value;
+  }
+
 
   render() {
     function makeSeqRow(v, i) {
