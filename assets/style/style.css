@@ -1,0 +1,71 @@
+.rackcabinet {
+  width:1100px;
+  background-color: #854500;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+  padding:0 2px 0 2px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  border-radius:2px;
+}
+
+.abswitch{
+  height:50px;
+  width:100px;
+  background-color:blue;
+  border:1px solid green;
+}
+
+html {
+  height:100%;
+  overflow:auto;
+}
+
+.slash {
+  font-size:34px;
+  padding-left:10px;
+  padding-right:10px;
+  margin-top: 6px;
+}
+
+.rack {
+  display:flex;
+  justify-content:center;
+  width:1014px;
+  justify-content:center;
+  flex-wrap:wrap;
+  background-color:black;
+}
+
+#root {
+  height:100%;
+  background-color:black;
+}
+
+.screwplate {
+  width:1000px;
+  font-size:20px;
+  position: relative;
+  display:flex;
+  justify-content:space-between;
+ }
+
+.sequencerrow {
+  display:flex;
+  flex-direction: row;
+  justify-content:center;
+}
+
+.drumrack {
+  width: 1000px;
+  margin-right:0px;
+  margin-left:0px;
+  padding:4px 2px 4px 2px;
+  border: 2px solid black;
+  border-radius: 9px;
+  display: flex;
+  justify-content: center;
+  flex-direction:row;
+  flex-wrap:wrap;
+  background-color: #404143;
+}
