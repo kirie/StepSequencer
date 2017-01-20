@@ -30,28 +30,14 @@ class drumMachine extends Component {
 
     this.sampleOrder = ['BD', 'SD', 'CL', 'CA', 'LT', 'CH', 'OH', 'HT'];
 
-    const getColumns3 = (track) => {
-      const result = [];
-      for (let i = 0; i < 32; i += 1) {
-        result.push(...track.map((v, idx) => {return v[i] ? { 'time': IndexToTime[i], 'note': this.sampleOrder[idx] } : null}).filter(v=> v));
-      }
-      return result;
-    };
-    const getColumns2 = (track) => {
+    const getColumns = (track) => {
       const result = [];
       for (let i = 0; i < 32; i += 1) {
         result.push(track.map((v, idx) => { return v[i] ? this.sampleOrder[idx] : null }).filter(v => v));
       }
       return result;
     };
-    const getColumns = (track) => {
-      const result = [];
-      for (let i = 0; i < 32; i += 1) {
-        result.push(track.map(v => v[i]));
-      }
-      return result;
-    };
-    this.columnPattern = getColumns2(this.state.currentPattern);
+    this.columnPattern = getColumns(this.state.currentPattern);
 
     const multSampler = new Tone.MultiPlayer({
       urls: {
@@ -68,27 +54,13 @@ class drumMachine extends Component {
 
     const steps = Array(32).fill(1).map((v, i) => { return i; });
 
-    // this.playSeq3 = new Tone.Part((time, value) => {
-    //   multSampler.start(value.note, value.time);
-    // }, columnPattern).start();
-
     this.playSeq2 = new Tone.Sequence((time, value) => {
       this.columnPattern[value].forEach((v) => { return multSampler.start(v, time, 0, '16n', 0);});
     }, steps, '16n');
 
-    // this.playSeq = new Tone.Sequence((time, value) => {
-    //   const columnValues = columnPattern[value];
-    //   console.log(columnValues, time, value);
-    //   for (let i = 0; i < 8; i += 1) {
-    //     if (columnValues[i]) {
-    //       multSampler.start(sampleOrder[i], time, 0, '16n', 0);
-    //     }
-    //   }
-    // }, steps, '16n');
-    // this.playSeq.start();
-    // this.playSeq.loop = true;
     this.playSeq2.start();
     this.playSeq2.loop = true;
+
     // Loop over 2 measures
     Tone.Transport.setLoopPoints(0, '2m');
     Tone.Transport.loop = true;
@@ -100,7 +72,6 @@ class drumMachine extends Component {
     Tone.Transport.bpm.value = this.state.bpm;
     Tone.Master.volume.value = this.state.volume;
   }
-  
 
   clearPattern() {
     this.setState({ currentPattern: nullTrack });
