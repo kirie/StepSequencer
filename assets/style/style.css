@@ -1,12 +1,13 @@
 .rackcabinet {
   width:1100px;
   background-color: #854500;
+  margin-top:4px;
   background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
   padding:0 2px 0 2px;
   display:flex;
   justify-content:center;
   flex-wrap:wrap;
-  border-radius:2px;
+  border-radius:10px;
 }
 
 .abswitch{
@@ -16,9 +17,11 @@
   border:1px solid green;
 }
 
-html {
-  height:100%;
-  overflow:auto;
+html, 
+body {
+  height: 100%;
+  background-color:black;
+
 }
 
 .slash {
@@ -38,8 +41,6 @@ html {
 }
 
 #root {
-  height:100%;
-  background-color:black;
 }
 
 .screwplate {
@@ -117,6 +118,9 @@ html {
   background-color: #E6E8BF;
 }
 
+.stepon {
+  border:1px solid red;
+}
 .lightoff {
   content: " ";
   display: block;
@@ -185,7 +189,7 @@ html {
   height: 55px;
   font-family: 'Monoton', cursive;
   width:300px;
-  font-size: 40px;
+  font-size: 46px;
   padding-left:3px;
   color: black;
   position:relative;

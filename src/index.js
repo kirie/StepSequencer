@@ -4,9 +4,7 @@ import DrumMachine from './components/drum_machine';
 
 const App = () => {
   return (
-    <div>
-      <DrumMachine />
-    </div>
+    <DrumMachine />
   );
 };
 

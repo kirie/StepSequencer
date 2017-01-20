@@ -3,7 +3,6 @@ import Tone from 'tone';
 import PositionTransform from '../../assets/js/position';
 import { demoTrack } from '../../assets/js/patterns';
 import { nullTrack } from '../../assets/js/null_track';
-import Samples from '../../assets/js/samples';
 import ChannelRow from './channel_row';
 import ProgressBar from './progress_bar';
 import ScrewPlate from './screws';
@@ -14,12 +13,12 @@ class drumMachine extends Component {
     super(props);
     this.abswitch = this.abswitch.bind(this);
     this.updatePattern = this.updatePattern.bind(this);
-    this.triggerSample = this.triggerSample.bind(this);
     this.startStop = this.startStop.bind(this);
     this.changeTempo = this.changeTempo.bind(this);
     this.changeVolume = this.changeVolume.bind(this);
     this.clearPattern = this.clearPattern.bind(this);
     this.positionMarker = this.positionMarker.bind(this);
+
     this.state = {
       bpm: 94,
       position: 0,
@@ -29,41 +28,79 @@ class drumMachine extends Component {
       currentPattern: demoTrack
     };
 
-    // Later
-    // const multSamp = new Tone.MultiPlayer({
-    //   BD: '../../assets/samples/Kick.wav',
-    //   SD: '../../assets/samples/Snare.wav',
-    //   CL: '../../assets/samples/Clap.wav',
-    //   CA: '../../assets/samples/Clave.wav',
-    //   LT: '../../assets/samples/LowTom.wav',
-    //   CH: '../../assets/samples/ClosedHat.wav',
-    //   OH: '../../assets/samples/OpenHat.wav',
-    //   HT: '../../assets/samples/HighTom.wav'
-    // }).toMaster();
+    this.sampleOrder = ['BD', 'SD', 'CL', 'CA', 'LT', 'CH', 'OH', 'HT'];
 
-    for (let i = 0; i < 8; i += 1) {
-      this[`sampler${i}`] = new Tone.Sampler(Samples[i]).toMaster();
-      this[`channelPattern${i}`] = new Tone.Sequence(
-        this.triggerSample.bind(this, `sampler${i}`),
-        this.state.currentPattern[i],
-        '16n').start(0);
-    }
+    const getColumns3 = (track) => {
+      const result = [];
+      for (let i = 0; i < 32; i += 1) {
+        result.push(...track.map((v, idx) => {return v[i] ? { 'time': IndexToTime[i], 'note': this.sampleOrder[idx] } : null}).filter(v=> v));
+      }
+      return result;
+    };
+    const getColumns2 = (track) => {
+      const result = [];
+      for (let i = 0; i < 32; i += 1) {
+        result.push(track.map((v, idx) => { return v[i] ? this.sampleOrder[idx] : null }).filter(v => v));
+      }
+      return result;
+    };
+    const getColumns = (track) => {
+      const result = [];
+      for (let i = 0; i < 32; i += 1) {
+        result.push(track.map(v => v[i]));
+      }
+      return result;
+    };
+    this.columnPattern = getColumns2(this.state.currentPattern);
 
+    const multSampler = new Tone.MultiPlayer({
+      urls: {
+        BD: '../../assets/samples/Kick.wav',
+        SD: '../../assets/samples/Snare.wav',
+        CL: '../../assets/samples/Clap.wav',
+        CA: '../../assets/samples/Clave.wav',
+        LT: '../../assets/samples/LowTom.wav',
+        CH: '../../assets/samples/ClosedHat.wav',
+        OH: '../../assets/samples/OpenHat.wav',
+        HT: '../../assets/samples/HighTom.wav'
+      }
+    }).toMaster();
+
+    const steps = Array(32).fill(1).map((v, i) => { return i; });
+
+    // this.playSeq3 = new Tone.Part((time, value) => {
+    //   multSampler.start(value.note, value.time);
+    // }, columnPattern).start();
+
+    this.playSeq2 = new Tone.Sequence((time, value) => {
+      this.columnPattern[value].forEach((v) => { return multSampler.start(v, time, 0, '16n', 0);});
+    }, steps, '16n');
+
+    // this.playSeq = new Tone.Sequence((time, value) => {
+    //   const columnValues = columnPattern[value];
+    //   console.log(columnValues, time, value);
+    //   for (let i = 0; i < 8; i += 1) {
+    //     if (columnValues[i]) {
+    //       multSampler.start(sampleOrder[i], time, 0, '16n', 0);
+    //     }
+    //   }
+    // }, steps, '16n');
+    // this.playSeq.start();
+    // this.playSeq.loop = true;
+    this.playSeq2.start();
+    this.playSeq2.loop = true;
     // Loop over 2 measures
     Tone.Transport.setLoopPoints(0, '2m');
     Tone.Transport.loop = true;
 
-    // Repeat and call function every 16th note
+    // Update position every 16th note
     Tone.Transport.scheduleRepeat(this.positionMarker, '16n');
 
-    // BPM and volume reflect the state
+    // BPM and volume reflect state
     Tone.Transport.bpm.value = this.state.bpm;
     Tone.Master.volume.value = this.state.volume;
   }
   
-  triggerSample(sampler) {
-    this[sampler].triggerAttackRelease(0);
-  }
 
   clearPattern() {
     this.setState({ currentPattern: nullTrack });
@@ -99,16 +136,22 @@ class drumMachine extends Component {
   updatePattern(event) {
     const channelNum = parseInt(event.currentTarget.dataset.channel, 10);
     const stepNum = parseInt(event.currentTarget.dataset.stepindx, 10);
-    const temp = this.state.currentPattern;
-    if (temp[channelNum][stepNum]) {
-      temp[channelNum][stepNum] = null;
-      this[`channelPattern${channelNum}`].remove(stepNum);
+    const temp2 = this.state.currentPattern;
+    if (temp2[channelNum][stepNum]) {
+      temp2[channelNum][stepNum] = null;
+      let temp3 = this.columnPattern[stepNum].slice();
+      let target = temp3.indexOf(this.sampleOrder[channelNum]);
+      temp3.splice(target, 1);
+      this.columnPattern[stepNum] = temp3;
+      this.setState({ currentPattern: temp2 });
     }
     else {
-      temp[channelNum][stepNum] = true;
-      this[`channelPattern${channelNum}`].add(stepNum, true);
+      let newSamp = this.sampleOrder[channelNum];
+      this.columnPattern[stepNum].push(newSamp);
+      temp2[channelNum][stepNum] = true;
+      this.setState({ currentPattern: temp2 });
     }
-    this.setState({ currentPattern: temp });
+    this.setState({ currentPattern: temp2 });
   }
 
   abswitch() {
@@ -116,13 +159,12 @@ class drumMachine extends Component {
   }
 
   changeVolume(e, value) {
-    this.setState({volume: value });
+    this.setState({ volume: value });
     if (value < -39) {
       value = -10000;
     }
     Tone.Master.volume.value = value;
   }
-
 
   render() {
     function makeSeqRow(v, i) {
