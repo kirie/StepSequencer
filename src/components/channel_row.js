@@ -7,7 +7,7 @@ const channelRow = (props) => {
       <div
         className="stepbutton"
         data-channel={props.channelNum}
-        data-stepindx={props.bside ? i+16 : i}
+        data-stepindx={props.bside ? i + 16 : i}
         onClick={props.updateSeq}
         key={`c${v}s${i}`}
       ><div className={channelClasses} /></div>
