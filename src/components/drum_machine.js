@@ -22,11 +22,13 @@ class drumMachine extends Component {
     this.state = {
       bpm: 94,
       position: 0,
-      volume: 0,
+      volume: -6,
       playing: false,
       bside: false,
       currentPattern: demoTrack
     };
+
+    this.sampleOrder = ['BD', 'SD', 'CL', 'CA', 'LT', 'CH', 'OH', 'HT'];
 
     const multSampler = new Tone.MultiPlayer({
       urls: {
@@ -40,8 +42,6 @@ class drumMachine extends Component {
         HT: '../../assets/samples/HighTom.wav'
       }
     }).toMaster();
-
-    this.sampleOrder = ['BD', 'SD', 'CL', 'CA', 'LT', 'CH', 'OH', 'HT'];
 
     const steps = Array(32).fill(1).map((v, i) => {
       return i;
@@ -64,14 +64,9 @@ class drumMachine extends Component {
     this.playSeq.start();
     this.playSeq.loop = true;
 
-    // Loop over 2 measures
     Tone.Transport.setLoopPoints(0, '2m');
     Tone.Transport.loop = true;
-
-    // Update position every 16th note
     Tone.Transport.scheduleRepeat(this.positionMarker, '16n');
-
-    // BPM and volume reflect state
     Tone.Transport.bpm.value = this.state.bpm;
     Tone.Master.volume.value = this.state.volume;
   }
@@ -110,22 +105,22 @@ class drumMachine extends Component {
   updatePattern(event) {
     const channelNum = parseInt(event.currentTarget.dataset.channel, 10);
     const stepNum = parseInt(event.currentTarget.dataset.stepindx, 10);
-    const temp2 = this.state.currentPattern;
-    if (temp2[channelNum][stepNum]) {
-      temp2[channelNum][stepNum] = null;
-      const temp3 = this.columnPattern[stepNum].slice();
-      const target = temp3.indexOf(this.sampleOrder[channelNum]);
-      temp3.splice(target, 1);
-      this.columnPattern[stepNum] = temp3;
-      this.setState({ currentPattern: temp2 });
+    const cpattern = this.state.currentPattern;
+    if (cpattern[channelNum][stepNum]) {
+      cpattern[channelNum][stepNum] = null;
+      const colpattemp = this.columnPattern[stepNum].slice();
+      const target = colpattemp.indexOf(this.sampleOrder[channelNum]);
+      colpattemp.splice(target, 1);
+      this.columnPattern[stepNum] = colpattemp;
+      this.setState({ currentPattern: cpattern });
     }
     else {
       const newSamp = this.sampleOrder[channelNum];
       this.columnPattern[stepNum].push(newSamp);
-      temp2[channelNum][stepNum] = true;
-      this.setState({ currentPattern: temp2 });
+      cpattern[channelNum][stepNum] = true;
+      this.setState({ currentPattern: cpattern });
     }
-    this.setState({ currentPattern: temp2 });
+    this.setState({ currentPattern: cpattern });
   }
 
   abswitch() {
@@ -134,7 +129,7 @@ class drumMachine extends Component {
 
   changeVolume(e, value) {
     this.setState({ volume: value });
-    if (value < -10) {
+    if (value < -40) {
       value = -100;
     }
     Tone.Master.volume.value = value;
@@ -166,14 +161,18 @@ class drumMachine extends Component {
           <div className="rack">
             <div className="drumrack">
               <ScrewPlate />
+
               <ProgressBar prog={this.state.position} />
+
               {this.state.currentPattern.map(makeSeqRow, this)}
+
               <PlayBar
                 bpm_num={this.state.bpm}
                 toggle_f={this.abswitch}
                 tempo_f={this.changeTempo}
                 playbutton_f={this.startStop}
               />
+
               <ScrewPlate />
             </div>
           </div>

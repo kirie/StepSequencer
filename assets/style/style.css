@@ -1,8 +1,14 @@
+html, 
+body {
+  height: 100%;
+  background-color:black;
+}
+
 .rackcabinet {
   width:1100px;
   background-color: #854500;
-  margin-top:4px;
-  background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+  margin-top:8px;
+  background-image: url('../images/dark-wood.png');
   padding:0 2px 0 2px;
   display:flex;
   justify-content:center;
@@ -15,13 +21,6 @@
   width:100px;
   background-color:blue;
   border:1px solid green;
-}
-
-html, 
-body {
-  height: 100%;
-  background-color:black;
-
 }
 
 .slash {
@@ -196,16 +195,19 @@ body {
   position:relative;
 }
 
+
+/** Disable Spin on Input element with type number **/
 textarea:focus, input:focus{
   outline: none;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
+
 
 .bpmplaybar{
   display:flex;
@@ -260,7 +262,6 @@ input::-webkit-inner-spin-button {
   font-weight: 300;
   cursor: pointer;
 }
-
 
 .toggle-slider {
   width: 42px;

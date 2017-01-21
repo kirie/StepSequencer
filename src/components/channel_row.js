@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 const channelRow = (props) => {
   function makeRow(v, i) {
@@ -19,6 +19,13 @@ const channelRow = (props) => {
       {props.channel.map(makeRow, this)}
     </div>
   );
+};
+
+channelRow.propTypes = {
+  channelNum: PropTypes.number,
+  bside: PropTypes.bool,
+  updateSeq: PropTypes.func,
+  channel: PropTypes.array
 };
 
 export default channelRow;
