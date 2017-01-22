@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/kirie/StepSequencer#readme",
   "dependencies": {
+    "audio-loader": "^0.6.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "tone": "^0.9.0"
@@ -28,6 +29,7 @@
     "babel-loader": "^6.2.10",
     "babel-preset-env": "^1.1.8",
     "babel-preset-react": "^6.16.0",
+    "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.1",
     "eslint": "^3.13.1",
     "eslint-config-airbnb": "^14.0.0",
@@ -35,6 +37,8 @@
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.26.0",
     "image-webpack-loader": "^3.1.0",
     "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",

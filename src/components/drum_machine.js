@@ -32,14 +32,14 @@ class drumMachine extends Component {
 
     const multSampler = new Tone.MultiPlayer({
       urls: {
-        BD: '../../assets/samples/Kick.wav',
-        SD: '../../assets/samples/Snare.wav',
-        CL: '../../assets/samples/Clap.wav',
-        CA: '../../assets/samples/Clave.wav',
-        LT: '../../assets/samples/LowTom.wav',
-        CH: '../../assets/samples/ClosedHat.wav',
-        OH: '../../assets/samples/OpenHat.wav',
-        HT: '../../assets/samples/HighTom.wav'
+        BD: './assets/samples/Kick.wav',
+        SD: './assets/samples/Snare.wav',
+        CL: './assets/samples/Clap.wav',
+        CA: './assets/samples/Clave.wav',
+        LT: './assets/samples/LowTom.wav',
+        CH: './assets/samples/ClosedHat.wav',
+        OH: './assets/samples/OpenHat.wav',
+        HT: './assets/samples/HighTom.wav'
       }
     }).toMaster();
 
