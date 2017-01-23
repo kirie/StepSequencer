@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 class Toggle extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggled: this.props.value
+      toggled: false
     };
-
     this.handleChange = this.handleChange.bind(this);
   }
-  
+
   handleChange() {
     this.props.abfunc();
     this.setState({ toggled: !this.state.toggled });
@@ -36,5 +35,9 @@ class Toggle extends Component {
     );
   }
 }
+
+Toggle.propTypes = {
+  abfunc: PropTypes.func.isRequired
+};
 
 export default Toggle;
