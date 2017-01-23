@@ -19,10 +19,10 @@ const playBar = (props) => {
 };
 
 playBar.propTypes = {
-  bpm_num: PropTypes.number,
-  toggle_f: PropTypes.func,
-  tempo_f: PropTypes.func,
-  playbutton_f: PropTypes.func
+  bpm_num: PropTypes.number.isRequired,
+  toggle_f: PropTypes.func.isRequired,
+  tempo_f: PropTypes.func.isRequired,
+  playbutton_f: PropTypes.func.isRequired
 };
 
 export default playBar;
