@@ -22,10 +22,10 @@ const channelRow = (props) => {
 };
 
 channelRow.propTypes = {
-  channelNum: PropTypes.number,
-  bside: PropTypes.bool,
-  updateSeq: PropTypes.func,
-  channel: PropTypes.array
+  channelNum: PropTypes.number.isRequired,
+  bside: PropTypes.bool.isRequired,
+  updateSeq: PropTypes.func.isRequired,
+  channel: PropTypes.array.isRequired
 };
 
 export default channelRow;

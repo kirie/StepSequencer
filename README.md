@@ -1,6 +1,6 @@
 # StepSequencer 
 
-[demo](https://kirie.github.io/StepSequencer)
+[Demo](https://kirie.github.io/StepSequencer)
 
 A simple TR-808 inspired drum step sequencer using React and Tone.js.  Each of the eight horizontal rows represents a single sample sound with 16 steps of 16th notes(4/4 time) per side.  The sequencer pattern spans a total of 32 steps or 2 bar measures.  The A/B switch toggles the 2nd set of 16th notes.  The rows are unlabeled.
 

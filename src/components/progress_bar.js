@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 const progressBar = (props) => {
   const temp = Array(16).fill(1);
@@ -15,5 +15,10 @@ const progressBar = (props) => {
     <div className="progressbar">{temp2}</div>
   );
 };
+
+progressBar.propTypes = {
+  prog: PropTypes.number.isRequired
+};
+
 
 export default progressBar;
