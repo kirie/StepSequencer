@@ -156,25 +156,23 @@ class drumMachine extends Component {
     }
 
     return (
-      <div className="container">
-        <div className="rackcabinet">
-          <div className="rack">
-            <div className="drumrack">
-              <ScrewPlate />
+      <div className="rackcabinet">
+        <div className="rack">
+          <div className="drumrack">
+            <ScrewPlate />
 
-              <ProgressBar prog={this.state.position} />
+            <ProgressBar prog={this.state.position} />
 
-              {this.state.currentPattern.map(makeSeqRow, this)}
+            {this.state.currentPattern.map(makeSeqRow, this)}
 
-              <PlayBar
-                bpm_num={this.state.bpm}
-                toggle_f={this.abswitch}
-                tempo_f={this.changeTempo}
-                playbutton_f={this.startStop}
-              />
+            <PlayBar
+              bpm_num={this.state.bpm}
+              toggle_f={this.abswitch}
+              tempo_f={this.changeTempo}
+              playbutton_f={this.startStop}
+            />
 
-              <ScrewPlate />
-            </div>
+            <ScrewPlate />
           </div>
         </div>
       </div>

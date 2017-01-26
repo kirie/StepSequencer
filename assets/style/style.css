@@ -1,14 +1,16 @@
 html, 
-body {
-  height: 100%;
+body, #root {
+  width:100%;
   background-color:black;
+  display:flex;
+  justify-content:center;
 }
 
 .rackcabinet {
-  width:1100px;
+  width: 90%;
   background-color: #854500;
-  margin-top:8px;
   background-image: url('../images/dark-wood.png');
+  margin-top:8px;
   padding:0 2px 0 2px;
   display:flex;
   justify-content:center;
@@ -16,76 +18,56 @@ body {
   border-radius:10px;
 }
 
-.abswitch{
-  height:50px;
-  width:100px;
-  background-color:blue;
-  border:1px solid green;
-}
-
-.slash {
-  font-size:34px;
-  padding-left:10px;
-  padding-right:10px;
-  margin-top: 6px;
-}
-
 .rack {
   display:flex;
   justify-content:center;
-  width:1014px;
-  justify-content:center;
+  width:92%;
   flex-wrap:wrap;
   background-color:black;
 }
 
-#root {
-}
-
-.screwplate {
-  width:1000px;
-  font-size:20px;
-  position: relative;
-  display:flex;
-  justify-content:space-between;
- }
-
-.sequencerrow {
-  display:flex;
-  flex-direction: row;
-  justify-content:center;
-}
-
 .drumrack {
-  width: 1000px;
-  margin-right:0px;
-  margin-left:0px;
+  width: 100%;
+  margin-right:6px;
+  margin-left:6px;
   padding:4px 2px 4px 2px;
-  border: 2px solid black;
   border-radius: 9px;
   display: flex;
+  position:relative;
   justify-content: center;
   flex-direction:row;
   flex-wrap:wrap;
   background-color: #404143;
 }
 
-.progresslight {
-  width: 40px;
-  height: 10px;
-  margin:5px;
-  border-radius: 2px;
-  background-color: #1c3030;
-  box-shadow: inset 0 -1px 2px rgba(0, 0, 0, 0.9), inset 0 28px 0 rgba(255, 255, 255, 0.2), inset 0 28px 0 rgba(255, 255, 255, 0.3);
+.screwplate {
+  width:99%;
+  display:flex;
+  position:relative;
+  justify-content:space-between;
+ }
+
+.screw {
+  height:20px;
+  width:20px;
+   background-image: -webkit-radial-gradient(  50%   0%,  8% 50%, hsla(0,0%,100%,.9) 0%, hsla(0,0%,100%,0) 100%),
+    -webkit-radial-gradient(  50% 100%, 12% 50%, hsla(0,0%,100%,.6) 0%, hsla(0,0%,100%,0) 100%),
+    -webkit-radial-gradient(   0%  50%, 50%  7%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+    -webkit-radial-gradient( 100%  50%, 50%  5%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+    -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)   3%, hsla(0,0%,  0%,.1) 3.5%),
+    -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%,.1) 7.5%),
+    -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.2) 2.2%),
+    -webkit-radial-gradient( 50% 50%, 200% 50%, hsla(0,0%,90%,1) 5%, hsla(0,0%,85%,1) 30%, hsla(0,0%,60%,1) 100%);
+  border-radius:50%;
+  position:relative;
+  box-shadow:0 0 10px 0 #222;
 }
 
-.progresslighton {
-  width: 40px;
-  height: 10px;
-  margin:5px;
-  border-radius: 2px;
-  background-color: red;
-  box-shadow: inset 0 -1px 2px rgba(0, 0, 0, 0.9), inset 0 28px 0 rgba(221, 29, 0, 0.2), inset 0 28px 0 rgba(255, 255, 255, 0.3);
+.sequencerrow {
+  width:90%;
+  display:flex;
+  flex-direction: row;
+  justify-content:center;
 }
 
 .stepbutton {
@@ -96,9 +78,31 @@ body {
   margin: 5px;
   border-radius: 5px;
   overflow: hidden;
-  text-indent: -999em;
   position: relative;
   box-shadow: inset 0 -2px 2px rgba(0, 0, 0, 0.9), inset 0 20px 0 rgba(255, 255, 255, 0.2), inset 0 24px 0 rgba(255, 255, 255, 0.3);
+}
+
+.lightoff {
+  display: block;
+  position: absolute;
+  background: #4a2b2b;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  top: 3px;
+  left: 34%;
+  border: 2px rgba(0, 0, 0, 0.15) solid;
+}
+.lighton {
+  display: block;
+  position: absolute;
+  background: hsla(0, 87%, 47%, 0.94);
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  top: 3px;
+  left: 34%;
+  border: 2px rgba(0, 0, 0, 0.15) solid;
 }
 
 .stepbutton:nth-of-type(n):nth-of-type(-n+4) {
@@ -116,58 +120,66 @@ body {
 .stepbutton:nth-of-type(n+13):nth-of-type(-n+16) {
   background-color: #E6E8BF;
 }
-
-.stepon {
-  border:1px solid red;
-}
-.lightoff {
-  content: " ";
-  display: block;
-  position: absolute;
-  background: #4a2b2b;
-  border-radius: 50%;
-  width: 12px;
-  height: 12px;
-  top: 5px;
-  left: 50%;
-  margin-left: -5px;
-  border: 2px rgba(0, 0, 0, 0.15) solid;
+.progressbar {
+  width:90%;
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
 }
 
-.lighton {
-  content: " ";
-  display: block;
-  position: absolute;
-  background: hsla(0, 87%, 47%, 0.94);
-  border-radius: 50%;
-  width: 12px;
-  height: 12px;
-  top: 5px;
-  left: 50%;
-  margin-left: -5px;
-  border: 2px rgba(0, 0, 0, 0.15) solid;
-}
-.screw {
-  height:20px;
-  width:20px;
-   background-image: -webkit-radial-gradient(  50%   0%,  8% 50%, hsla(0,0%,100%,.9) 0%, hsla(0,0%,100%,0) 100%),
-    -webkit-radial-gradient(  50% 100%, 12% 50%, hsla(0,0%,100%,.6) 0%, hsla(0,0%,100%,0) 100%),
-    -webkit-radial-gradient(   0%  50%, 50%  7%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
-    -webkit-radial-gradient( 100%  50%, 50%  5%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
-    -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)   3%, hsla(0,0%,  0%,.1) 3.5%),
-    -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%,.1) 7.5%),
-    -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.2) 2.2%),
-    -webkit-radial-gradient( 50% 50%, 200% 50%, hsla(0,0%,90%,1) 5%, hsla(0,0%,85%,1) 30%, hsla(0,0%,60%,1) 100%);
-  border-radius:50%;
+.progresslight {
+  width: 40px;
+  height: 10px;
   position:relative;
-  box-shadow:0 0 10px 0 #222;
+  margin:5px;
+  border-radius: 2px;
+  background-color: #1c3030;
+  box-shadow: inset 0 -1px 2px rgba(0, 0, 0, 0.9), inset 0 28px 0 rgba(255, 255, 255, 0.2), inset 0 28px 0 rgba(255, 255, 255, 0.3);
+}
+
+.progresslighton {
+  width: 40px;
+  height: 10px;
+  margin:5px;
+  position:relative;
+  border-radius: 2px;
+  background-color: red;
+  box-shadow: inset 0 -1px 2px rgba(0, 0, 0, 0.9), inset 0 28px 0 rgba(221, 29, 0, 0.2), inset 0 28px 0 rgba(255, 255, 255, 0.3);
+}
+
+.drumrackbar {
+  width:90%;
+  margin-right:13%;
+  margin-left:13%;
+  margin-top:15px;
+  display:flex;
+  justify-content: space-around;
+}
+
+.drumracklabel {
+  height: 55px;
+  font-family: 'Monoton', cursive;
+  bottom:4px;
+  font-size: 46px;
+  color: black;
+  position:relative;
+}
+
+.slash {
+  font-size:34px;
+  padding-left:10px;
+  padding-right:10px;
+  margin-top: 6px;
 }
 
 .playstopbutton {
-  width: 195px;
+  width: 10em;
+  padding-left:4px;
+  padding-right:4px;
   cursor: pointer;
   font-family: 'Orbitron';
   height: 55px;
+  position:relative;
   border-radius: 5px;
   background-color:silver;
   display:flex;
@@ -176,49 +188,11 @@ body {
   box-shadow: inset 0 -2px 2px rgba(0, 0, 0, 0.9), inset 0 180px 0 rgba(255, 255, 255, 0.2), inset 0 190px 0 rgba(255, 255, 255, 0.3);
 }
 
-.drumrackbar {
-  margin-top:15px;
-  height: 90px;
-  width: 800px;
-  display:flex;
-  justify-content: space-between;
-}
-
-.drumracklabel {
-  height: 55px;
-  font-family: 'Monoton', cursive;
-  width:300px;
-  bottom:4px;
-  font-size: 46px;
-  padding-left:3px;
-  color: black;
-  position:relative;
-}
-
-
-/** Disable Spin on Input element with type number **/
-textarea:focus, input:focus{
-  outline: none;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  /* display: none; <- Crashes Chrome on hover */
-  -webkit-appearance: none;
-  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-}
-
-
 .bpmplaybar{
   display:flex;
   flex-direction:row;
   justify-content:center;
   padding-right:3px;
-}
-
-.container {
-  display:flex;
-  justify-content:center;
 }
 
 .tempolabel {
@@ -230,18 +204,13 @@ input::-webkit-inner-spin-button {
   border-radius: 5px;
   color: #DD1D00;
   margin-right: 7px;
-  width: 100px;
+  width: 3em;
   text-align:right;
   border: none;
   display:flex;
   justify-content:center;
   align-items:center;
   border-color: transparent;
-}
-
-.progressbar {
-  display:flex;
-  justify-content:center;
 }
 
 .togglebox {
@@ -280,7 +249,7 @@ input::-webkit-inner-spin-button {
 .toggle-slider-button {
   position: absolute;
   left: 1px;
-  top: 1px;
+  top: 0px;
   width: 18px;
   height: 18px;
   background: black;
@@ -297,4 +266,22 @@ input::-webkit-inner-spin-button {
 
 .toggled .toggle-slider-button {
   left: calc(100% - 19px);
+}
+
+.abswitch{
+  height:50px;
+  width:100px;
+  background-color:blue;
+  border:1px solid green;
+}
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none; /**<- Crashes Chrome on hover **/
+  -webkit-appearance: none;
+  margin: 0; /**<-- Apparently some margin are still there even though it's hidden **/
 }
