@@ -56,7 +56,7 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
     new CopyWebpackPlugin([
-      { from: 'assets/samples/', to: 'assets/samples/' }
+      { from: 'src/components/assets/samples/', to: 'assets/samples/' }
     ])
   ]
 };
