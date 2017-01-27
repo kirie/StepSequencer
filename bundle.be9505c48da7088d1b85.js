@@ -163,6 +163,18 @@ var drumMachine = function (_Component) {
   }
 
   _createClass(drumMachine, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      document.addEventListener('keydown', function (e) {
+        var pressed = e.key;
+        if (pressed === ' ') {
+          _this2.startStop();
+        }
+      });
+    }
+  }, {
     key: 'clearPattern',
     value: function clearPattern() {
       this.setState({ currentPattern: _null_track.nullTrack });
@@ -252,27 +264,23 @@ var drumMachine = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
+        { className: 'rackcabinet' },
         _react2.default.createElement(
           'div',
-          { className: 'rackcabinet' },
+          { className: 'rack' },
           _react2.default.createElement(
             'div',
-            { className: 'rack' },
-            _react2.default.createElement(
-              'div',
-              { className: 'drumrack' },
-              _react2.default.createElement(_screws2.default, null),
-              _react2.default.createElement(_progress_bar2.default, { prog: this.state.position }),
-              this.state.currentPattern.map(makeSeqRow, this),
-              _react2.default.createElement(_playbar2.default, {
-                bpm_num: this.state.bpm,
-                toggle_f: this.abswitch,
-                tempo_f: this.changeTempo,
-                playbutton_f: this.startStop
-              }),
-              _react2.default.createElement(_screws2.default, null)
-            )
+            { className: 'drumrack' },
+            _react2.default.createElement(_screws2.default, null),
+            _react2.default.createElement(_progress_bar2.default, { prog: this.state.position }),
+            this.state.currentPattern.map(makeSeqRow, this),
+            _react2.default.createElement(_playbar2.default, {
+              bpm_num: this.state.bpm,
+              toggle_f: this.abswitch,
+              tempo_f: this.changeTempo,
+              playbutton_f: this.startStop
+            }),
+            _react2.default.createElement(_screws2.default, null)
           )
         )
       );
@@ -405,10 +413,10 @@ var channelRow = function channelRow(props) {
 };
 
 channelRow.propTypes = {
-  channelNum: _react.PropTypes.number,
-  bside: _react.PropTypes.bool,
-  updateSeq: _react.PropTypes.func,
-  channel: _react.PropTypes.array
+  channelNum: _react.PropTypes.number.isRequired,
+  bside: _react.PropTypes.bool.isRequired,
+  updateSeq: _react.PropTypes.func.isRequired,
+  channel: _react.PropTypes.array.isRequired
 };
 
 exports.default = channelRow;
@@ -448,27 +456,27 @@ var playBar = function playBar(props) {
     _react2.default.createElement(
       'div',
       { className: 'bpmplaybar' },
-      _react2.default.createElement('input', { type: 'number', className: 'tempolabel', onChange: props.tempo_f, value: props.bpm_num }),
+      _react2.default.createElement('input', { type: 'number', className: 'tempolabel', onChange: props.tempo_f, value: props.bpm_num })
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'playstopbutton', onClick: props.playbutton_f },
+      _react2.default.createElement('i', { className: 'fa fa-play fa-2x', 'aria-hidden': 'true' }),
       _react2.default.createElement(
         'div',
-        { className: 'playstopbutton', onClick: props.playbutton_f },
-        _react2.default.createElement('i', { className: 'fa fa-play fa-2x', 'aria-hidden': 'true' }),
-        _react2.default.createElement(
-          'div',
-          { className: 'slash' },
-          '/'
-        ),
-        _react2.default.createElement('i', { className: 'fa fa-stop fa-2x', 'aria-hidden': 'true' })
-      )
+        { className: 'slash' },
+        '/'
+      ),
+      _react2.default.createElement('i', { className: 'fa fa-stop fa-2x', 'aria-hidden': 'true' })
     )
   );
 };
 
 playBar.propTypes = {
-  bpm_num: _react.PropTypes.number,
-  toggle_f: _react.PropTypes.func,
-  tempo_f: _react.PropTypes.func,
-  playbutton_f: _react.PropTypes.func
+  bpm_num: _react.PropTypes.number.isRequired,
+  toggle_f: _react.PropTypes.func.isRequired,
+  tempo_f: _react.PropTypes.func.isRequired,
+  playbutton_f: _react.PropTypes.func.isRequired
 };
 
 exports.default = playBar;
@@ -507,6 +515,10 @@ var progressBar = function progressBar(props) {
     { className: "progressbar" },
     temp2
   );
+};
+
+progressBar.propTypes = {
+  prog: _react.PropTypes.number.isRequired
 };
 
 exports.default = progressBar;
@@ -573,9 +585,8 @@ var Toggle = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Toggle.__proto__ || Object.getPrototypeOf(Toggle)).call(this, props));
 
     _this.state = {
-      toggled: _this.props.value
+      toggled: false
     };
-
     _this.handleChange = _this.handleChange.bind(_this);
     return _this;
   }
@@ -621,6 +632,10 @@ var Toggle = function (_Component) {
 
   return Toggle;
 }(_react.Component);
+
+Toggle.propTypes = {
+  abfunc: _react.PropTypes.func.isRequired
+};
 
 exports.default = Toggle;
 
