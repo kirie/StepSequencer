@@ -7,7 +7,7 @@ body, #root {
 }
 
 .rackcabinet {
-  width: 90%;
+  width: 75%;
   background-color: #854500;
   background-image: url('../images/dark-wood.png');
   margin-top:8px;
@@ -90,9 +90,10 @@ body, #root {
   width: 10px;
   height: 10px;
   top: 3px;
-  left: 34%;
+  left: 13px;
   border: 2px rgba(0, 0, 0, 0.15) solid;
 }
+
 .lighton {
   display: block;
   position: absolute;
@@ -101,7 +102,7 @@ body, #root {
   width: 10px;
   height: 10px;
   top: 3px;
-  left: 34%;
+  left: 13px;
   border: 2px rgba(0, 0, 0, 0.15) solid;
 }
 
@@ -120,6 +121,7 @@ body, #root {
 .stepbutton:nth-of-type(n+13):nth-of-type(-n+16) {
   background-color: #E6E8BF;
 }
+
 .progressbar {
   width:90%;
   display:flex;
@@ -149,18 +151,16 @@ body, #root {
 
 .drumrackbar {
   width:90%;
-  margin-right:13%;
-  margin-left:13%;
   margin-top:15px;
   display:flex;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
 .drumracklabel {
   height: 55px;
   font-family: 'Monoton', cursive;
   bottom:4px;
-  font-size: 46px;
+  font-size: 48px;
   color: black;
   position:relative;
 }
@@ -173,12 +173,13 @@ body, #root {
 }
 
 .playstopbutton {
-  width: 10em;
+  width: 9em;
   padding-left:4px;
   padding-right:4px;
   cursor: pointer;
   font-family: 'Orbitron';
   height: 55px;
+  margin-top:3px;
   position:relative;
   border-radius: 5px;
   background-color:silver;
@@ -192,7 +193,6 @@ body, #root {
   display:flex;
   flex-direction:row;
   justify-content:center;
-  padding-right:3px;
 }
 
 .tempolabel {
@@ -214,6 +214,7 @@ body, #root {
 }
 
 .togglebox {
+  margin:0 20px 0 20px ;
   display:flex;
   flex-direction:row;
   justify-content:space-between;
@@ -223,7 +224,7 @@ body, #root {
 }
 
 .lettera, .letterb {
-  margin-top:12px;
+  margin-top:19px;
   color:black;
   font-family: 'Orbitron', sans-serif;
   text-transform: uppercase;
@@ -285,3 +286,73 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0; /**<-- Apparently some margin are still there even though it's hidden **/
 }
+
+@media only screen and (min-width: 1550px) {
+  .drumrackbar{
+    margin-left:19em;
+    margin-right:19em;
+  }
+}
+
+@media only screen and (min-width: 1314px) {
+  .drumrackbar{
+    justify-content:space-around;
+    margin-left:7em;
+    margin-right:7em;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .drumrackbar{
+    flex-wrap:wrap;
+  }
+  .drumracklabel {
+    font-size:40px;
+  }
+  .lightoff {
+    width: 8px;
+    height: 8px;
+    left: 9px;
+  }
+  .lighton {
+    width: 8px;
+    height: 8px;
+    left: 9px;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .drumracklabel{
+    font-size:30px;
+  }
+  .lightoff {
+    width: 6px;
+    height:6px;
+    left: 8px;
+  }
+  .lighton {
+    width: 6px;
+    height: 6px;
+    left: 8px;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  .lightoff {
+    left: 5px;
+  }
+  .lighton {
+    left: 5px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+
+  .lightoff {
+    left: 2px;
+  }
+  .lighton {
+    left: 2px;
+  }
+}
+

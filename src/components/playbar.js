@@ -8,11 +8,11 @@ const playBar = (props) => {
       <Toggle abfunc={props.toggle_f} />
       <div className="bpmplaybar">
         <input type="number" className="tempolabel" onChange={props.tempo_f} value={props.bpm_num} />
-        <div className="playstopbutton" onClick={props.playbutton_f}>
-          <i className="fa fa-play fa-2x" aria-hidden="true" />
-          <div className="slash">/</div>
-          <i className="fa fa-stop fa-2x" aria-hidden="true" />
-        </div>
+      </div>
+      <div className="playstopbutton" onClick={props.playbutton_f}>
+        <i className="fa fa-play fa-2x" aria-hidden="true" />
+        <div className="slash">/</div>
+        <i className="fa fa-stop fa-2x" aria-hidden="true" />
       </div>
     </div>
   );

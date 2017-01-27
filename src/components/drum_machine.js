@@ -71,6 +71,15 @@ class drumMachine extends Component {
     Tone.Master.volume.value = this.state.volume;
   }
 
+  componentDidMount() {
+    document.addEventListener('keydown', (e) => {
+      const pressed = e.key;
+      if (pressed === ' ') {
+        this.startStop();
+      }
+    });
+  }
+
   clearPattern() {
     this.setState({ currentPattern: nullTrack });
   }
