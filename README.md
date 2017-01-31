@@ -4,7 +4,7 @@
 
 A simple TR-808 inspired drum step sequencer using React and Tone.js.  Each of the eight horizontal rows represents a single sample sound with 16 steps of 16th notes(4/4 time) per side.  The sequencer pattern spans a total of 32 steps or 2 bar measures.  The A/B switch toggles the 2nd set of 16th notes.  The rows are unlabeled.
 
-The preset drum pattern is from this [song](https://www.youtube.com/watch?v=rjlSiASsUIs)
+The preset drum pattern is from one of the most recognized classic 808 [song](https://www.youtube.com/watch?v=rjlSiASsUIs)
 
 ### Motivation
 
