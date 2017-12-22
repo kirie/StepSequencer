@@ -7,7 +7,7 @@ body, #root {
 }
 
 .rackcabinet {
-  width: 75%;
+  width: 85%;
   background-color: #854500;
   background-image: url(e3577ddd019c610cedbeb38ebff4e2ef.png);
   margin-top:8px;
@@ -72,12 +72,15 @@ body, #root {
 
 .stepbutton {
   cursor: pointer;
-  width: 40px;
+  width: 5vw;
   height: 55px;
   background-color: grey;
   margin: 5px;
   border-radius: 5px;
   overflow: hidden;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
   position: relative;
   box-shadow: inset 0 -2px 2px rgba(0, 0, 0, 0.9), inset 0 20px 0 rgba(255, 255, 255, 0.2), inset 0 24px 0 rgba(255, 255, 255, 0.3);
 }
@@ -86,11 +89,10 @@ body, #root {
   display: block;
   position: absolute;
   background: #4a2b2b;
+  top:10%;
   border-radius: 50%;
   width: 10px;
   height: 10px;
-  top: 3px;
-  left: 13px;
   border: 2px rgba(0, 0, 0, 0.15) solid;
 }
 
@@ -101,8 +103,7 @@ body, #root {
   border-radius: 50%;
   width: 10px;
   height: 10px;
-  top: 3px;
-  left: 13px;
+  top: 10%;
   border: 2px rgba(0, 0, 0, 0.15) solid;
 }
 
@@ -130,7 +131,7 @@ body, #root {
 }
 
 .progresslight {
-  width: 40px;
+  width: 5vw;
   height: 10px;
   position:relative;
   margin:5px;
@@ -140,7 +141,7 @@ body, #root {
 }
 
 .progresslighton {
-  width: 40px;
+  width: 5vw;
   height: 10px;
   margin:5px;
   position:relative;
@@ -177,9 +178,10 @@ body, #root {
   padding-left:4px;
   padding-right:4px;
   cursor: pointer;
+  align-self: flex-end;
   font-family: 'Orbitron';
   height: 55px;
-  margin-top:3px;
+  margin-top:1px;
   position:relative;
   border-radius: 5px;
   background-color:silver;
@@ -302,6 +304,10 @@ input::-webkit-inner-spin-button {
   }
 }
 
+@media only screen and (min-width: 1280px) {
+
+}
+
 @media only screen and (max-width: 1024px) {
   .drumrackbar{
     flex-wrap:wrap;
@@ -309,50 +315,30 @@ input::-webkit-inner-spin-button {
   .drumracklabel {
     font-size:40px;
   }
-  .lightoff {
-    width: 8px;
-    height: 8px;
-    left: 9px;
-  }
-  .lighton {
-    width: 8px;
-    height: 8px;
-    left: 9px;
-  }
 }
 
 @media only screen and (max-width: 960px) {
   .drumracklabel{
     font-size:30px;
   }
-  .lightoff {
-    width: 6px;
-    height:6px;
-    left: 8px;
-  }
   .lighton {
-    width: 6px;
-    height: 6px;
-    left: 8px;
+    width:5px;
+    height:5px;
+  }
+  .lightoff {
+    width:5px;
+    height:5px;
   }
 }
 
-@media only screen and (max-width: 860px) {
-  .lightoff {
-    left: 5px;
+@media only screen and (max-width: 700px) {
+  .sequencerrow {
+    width:100%;
   }
-  .lighton {
-    left: 5px;
+  .progressbar {
+    width:100%;
   }
-}
-
-@media only screen and (max-width: 640px) {
-
-  .lightoff {
-    left: 2px;
-  }
-  .lighton {
-    left: 2px;
+  .rackcabinet {
+    width:98%;
   }
 }
-
